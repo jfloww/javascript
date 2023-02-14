@@ -49,24 +49,26 @@ if (undefined) {
 // Class
 console.clear();
 class Counter{
-    constructor() {
+    constructor(runEveryFiveTimes) {
         this.counter = 0;
+        this.callback = runEveryFiveTimes;
     }
-    increase(runIf5Times) {
+    increase() {
         this.counter++;
         console.log(this.counter);
         if(this.counter % 5 === 0) {
-            runIf5Times(this.counter);
+            this.callback && this.callback(this.counter);
         }
     }
 }
-const coolCounter = new Counter();
-function printSomething() {
-    console.log('yo!');
-}
-coolCounter.increase(printSomething); // 1
-coolCounter.increase(printSomething); // 2
-coolCounter.increase(printSomething); // 3
-coolCounter.increase(printSomething); // 4
-coolCounter.increase(printSomething); // 5 yo!
+const coolCounter = new Counter(printSomething);
 
+function printSomething(num) {
+    console.log(`wow! ${num}`);
+}
+function alertNum(num) {
+    alert(`Wow ${num}`);
+}
+
+const printCounter = new Counter(printSomething);
+const alertCounter = new Counter(alertNum);

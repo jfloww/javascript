@@ -1,2 +1,2 @@
 # javascript
-JavaScript Study
+Basic JavaScript Study
